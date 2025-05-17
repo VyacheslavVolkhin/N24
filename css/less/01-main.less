@@ -77,6 +77,19 @@ p, ul, ol, table, blockquote, .bq-text {
 }
 li {
 	position: relative;
+	padding-left: 1.4em;
+	&:before {
+		content: "";
+		display: block;
+		width: 6px;height: 6px;
+		border-radius: 50%;
+		position: absolute;
+		top: 0.65em;
+		left: 0.7em;
+		margin-top: -3px;
+		margin-left: -3px;
+		background: currentColor;
+	}
 }
 .list-marker {
 	font-size: 3.6rem;
@@ -212,6 +225,9 @@ h6, .h6-title {
 }
 .h3-title, h3 {
 	font-size: 18px;
+}
+.text-main {
+	font-size: (40/24em);
 }
 .text-color, .title-color {
 	color: var(--clr-att);
