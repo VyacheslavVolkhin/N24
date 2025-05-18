@@ -1,6 +1,76 @@
 /* ----------------------------------- *\
 			items styles
 \* ----------------------------------- */
+.item-tile-info-offer {
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+	position: relative;
+	.tile-photo {
+		width: 8rem;
+		flex-shrink: 0;
+	}
+	.tile-title {
+		flex: 1;
+		padding-left: 10px;
+		max-width: (395/24em);
+	}
+}
+.item-tile-question {
+	.tile-button {
+		font-weight: 500;
+		letter-spacing: normal;
+		padding-top: var(--marginSmall);
+		padding-bottom: var(--marginSmall);
+		padding-right: 24px;
+		color: var(--clr-base);
+		transition: all ease 0.2s;
+		margin: 0;
+		display: block;
+		position: relative;
+		&:first-child {
+			margin: 0;
+		}
+		&:last-child {
+			margin: 0;
+		}
+		&:hover {
+			color: var(--clr-att);
+			&:before, &:after {
+				color: var(--clr-att);
+			}
+		}
+		&.active {
+			&:before {
+				rotate: 0deg;
+			}
+		}
+		&:before, &:after {
+			content: "";
+			display: block;
+			width: 14px;height: 2px;
+			background: var(--clr-base);
+			transition: all ease 0.2s;
+			position: absolute;
+			top: 50%;right: 7px;
+			margin: -1px -7px 0 0;
+		}
+		&:before {
+			rotate: 90deg;
+		}
+	}
+	.tile-content-block {
+		display: none;
+		padding-bottom: var(--marginSmall);
+	}
+}
+.item-tile-info-service {
+	line-height: normal;
+	.tile-photo {
+		width: 80px;
+		margin-bottom: 10px;
+	}
+}
 .item-tile-review {
 	display: block;
 	position: relative;
@@ -213,6 +283,13 @@
 		&:after {
 			background: var(--bgMain);
 		}
+	}
+	.tile-title-wrap {
+		margin-bottom: 4.4rem;
+	}
+	.tile-title-main {
+		font-size: 2.4rem;
+		font-weight: 600;
 	}
 	.tile-photo-wrap {
 		display: block;
@@ -475,6 +552,17 @@
 	}
 }
 @media (max-width: 639px) {
+	.item-tile-info-offer {
+		display: block;
+		.tile-photo {
+			margin: 0 auto;
+		}
+		.tile-title {
+			margin: 0 auto;
+			padding: 10px 0 0 0;
+			text-align: center;
+		}
+	}
 	.item-tile-info-row {
 		display: block;
 		.tile-photo-wrap {

@@ -190,6 +190,22 @@ html.with-fancybox body.hide-scrollbar {
 		flex: 1;
 		order: 1;
 	}
+	.dropdown-menu {
+		display: none;
+		font-size: var(--fsize);
+		line-height: (30/24);
+		font-weight: 600;
+		color: #fff;
+		animation: fadein ease 0.2s;
+		a {
+			color: inherit;
+			display: block;
+			padding: 5px 0;
+			&:hover, &.active {
+				color: var(--clr-border-light);
+			}
+		}
+	}
 	.buttons-wrap {
 		flex-shrink: 0;
 		order: 2;
@@ -218,6 +234,17 @@ html.with-fancybox body.hide-scrollbar {
 		}
 		.button-title {
 			display: block;
+		}
+		.button-toggle {
+			display: block;
+			width: 24px;height: 24px;
+			flex-shrink: 0;
+			margin-left: 10px;
+			display: none;
+			background: url(../img/icons/arrow-slider.svg) center no-repeat;
+			rotate: 90deg;
+			background-size: 28px auto;
+			transition: all ease 0.2s;
 		}
 	}
 	.btn-popup {
@@ -486,6 +513,9 @@ html.with-fancybox body.hide-scrollbar {
 	}
 }
 @media (max-width: 1023px) {
+	.menu-show {
+		overflow: hidden;
+	}
     .section-mobile-full {
         margin-left: calc(var(--paddingContainer) * -1);
         margin-right: calc(var(--paddingContainer) * -1);
@@ -556,9 +586,33 @@ html.with-fancybox body.hide-scrollbar {
 				}
 			}
 		}
+		.open {
+			.btn-menu {
+				color: var(--clr-att);
+			}
+			.button-toggle {
+				rotate: -90deg;
+			}
+			.dropdown-menu {
+				display: block;
+			}
+		}
 		.btn-menu {
+			display: inline-flex;
 			height: auto;
 			padding: 10px 0;
+			.button-toggle {
+				display: block;
+			}
+		}
+		li {
+			&:not(:has(.dropdown-menu)) {
+				.btn-menu {
+					.button-toggle {
+						display: none;
+					}
+				}
+			}
 		}
 		.btn-popup {
 			display: block;
@@ -573,6 +627,16 @@ html.with-fancybox body.hide-scrollbar {
 				top: 0;right: 0;
 				margin: 0;
 				z-index: 120;
+			}
+		}
+		.dropdown-menu {
+			color: var(--clr-base);
+			padding-bottom: 24px;
+			font-size: 0.8em;
+			a {
+				&:hover, &.active {
+					color: var(--clr-att);
+				}
 			}
 		}
 	}
@@ -596,10 +660,8 @@ html.with-fancybox body.hide-scrollbar {
 }
 @media (max-width: 639px) {
 	.header {
-		.logo {
-			.logo-title {
-				display: none;
-			}
+		.actions-inner-wrap {
+			display: none;
 		}
 	}
 	.footer {
@@ -637,6 +699,70 @@ html.with-fancybox body.hide-scrollbar {
 		}
 		.menu-wrap {
 			text-align: center;
+		}
+	}
+}
+@media (min-width: 1024px) {
+	.nav {
+		.menu {
+			position: static;
+		}
+		li {
+			position: static;
+		}
+		.btn-menu {
+			&:after {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 100%;left: 0;right: 0;
+				z-index: 2;
+				height: 100px;
+				display: none;
+			}
+			&:hover {
+				&:after {
+					display: block;
+				}
+			}
+		}
+		li {
+			&:hover {
+				.btn-menu {
+					color: var(--clr-att);
+					&:after {
+						display: block;
+					}
+				}
+				.dropdown-menu {
+					display: block;
+				}
+			}
+		}
+		.dropdown-menu {
+			position: absolute;
+			left: var(--paddingContainer);
+			right: var(--paddingContainer);
+			font-size: var(--fsizeSmall);
+			z-index: 20;
+			padding: var(--marginMedium) var(--marginMedium) var(--marginMedium) var(--marginMedium);
+			columns: 2;
+			column-gap: var(--marginMedium);
+			li {
+				page-break-inside: avoid;
+				break-inside: avoid-column;
+			}
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 8px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				border-radius: 0 0 var(--rdMain) var(--rdMain);
+				background: var(--clr-att);
+			}
 		}
 	}
 }

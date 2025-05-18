@@ -5,6 +5,28 @@ document.addEventListener("DOMContentLoaded", function() {
 		//settings
 	});
 
+	//button scroll 
+	document.querySelectorAll('.js-anchor').forEach(anchor => {
+		anchor.addEventListener('click', function (e) {
+			e.preventDefault();
+			document.querySelector(this.getAttribute('href')).scrollIntoView({
+				behavior: 'smooth'
+			});
+		});
+	});
+
+
+	//mobile menu
+	const menuButton = document.querySelectorAll('.nav .menu-inner-wrap .button-toggle');
+	for (i = 0;i < menuButton.length;i++) {
+		menuButton[i].addEventListener('click', function(e) {
+			this.closest('li').classList.toggle('open')
+			e.preventDefault()
+			e.stopPropagation()
+			return false
+		})
+	}
+
 
 	//js popup wrap
 	const togglePopupButtons = document.querySelectorAll('.js-btn-popup-toggle')
@@ -45,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			} else {
 				popupElementsClose()
 				this.classList.add('active')
-				if (this.closest('.popup-menu-wrap')) {
+				if (this.closest('.nav .menu-inner-wrap')) {
 					document.body.classList.add('menu-show')
 				}
 				if (this.closest('.popup-search-wrap')) {
@@ -167,9 +189,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Popups
 	let popupCurrent;
 	let popupsList = document.querySelectorAll('.popup-outer-box')
+	const popupTitle = document.getElementById('popup-title');
 
 	document.querySelectorAll(".js-popup-open").forEach(function (element) {
 	element.addEventListener("click", function (e) {
+
+		const popupTitleNew = this.getAttribute('data-popup-title');
+		popupTitle.textContent = popupTitleNew;
+
+		
 		document.querySelector(".popup-outer-box").classList.remove("active");
 		document.body.classList.add("popup-open");
 
